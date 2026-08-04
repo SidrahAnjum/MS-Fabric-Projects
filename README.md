@@ -10,7 +10,7 @@ This isn't a tutorial replica.
 
 A synthetic pharmacy claims dataset (patients, prescribers, pharmacies, plans, drugs, and about 31,000 claim fills) runs through a single, config-driven Fabric pipeline. Adding a new entity just means adding one row to a control table. Nobody has to touch the pipeline canvas.
 
-The interesting part isn't the medallion architecture itself. Bronze, silver, and gold layers are table stakes at this point. What makes this project different is that the pipeline handles five genuinely different ingestion mechanics in one canvas, plus a dedicated incremental-loading pipeline with a real, self-corrected concurrency bug, an event-driven trigger, real-time streaming, and a verified semantic model. Each of these has a defensible engineering decision behind it.
+The master pipeline handles five genuinely different ingestion mechanics in one canvas, plus a dedicated incremental-loading pipeline with a real, self-corrected concurrency bug, an event-driven trigger, real-time streaming, and a verified semantic model. Each of these has a defensible engineering decision behind it.
 
 | Source | Mechanism | Why this way |
 |---|---|---|
