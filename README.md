@@ -104,15 +104,15 @@ The Switch activity routes on a combined key (`source_type` plus `load_type`) in
 
 ---
 
-## True incremental loading, with a self-corrected race condition
+## Incremental loading, with a self-corrected race condition
 
 `fact_fills_raw` gets its own dedicated pipeline, `pl_fills_incremental`, for two reasons. Incremental loading needs logic that doesn't belong in the shared orchestrator, and a file-arrival trigger on this one pipeline shouldn't re-run the other five entities every time a fills file lands.
 
 The watermarking here works at the file level, not the row level. Copy Data can't filter rows inside a CSV by a column value. That only works against queryable sources like the SQL database. Instead, the pipeline tracks file upload time and uses Copy Data's native "Filter by last modified" setting.
 
-There's a real bug worth mentioning here, one that was found and fixed rather than just built once and left alone. The first version set the watermark to `current_timestamp()` after each run. That's simple, but it has a genuine gap. If a new file landed during a run, after the Copy step already read the folder but before the watermark updated, that file's timestamp would end up older than the new watermark and get silently skipped, forever. The fix was to compute the watermark from the actual latest file-modified time genuinely seen, using a sequential ForEach that checks every file's real timestamp. That closes the gap instead of papering over it. It also required routing around a separate platform restriction, since Set Variable activities can't self-reference, using Microsoft's own documented temp-variable pattern.
+There's a bug worth mentioning here, one that was found and fixed rather than just built once and left alone. The first version set the watermark to `current_timestamp()` after each run. That's simple, but it has a genuine gap. If a new file landed during a run, after the Copy step already read the folder but before the watermark updated, that file's timestamp would end up older than the new watermark and get silently skipped, forever. The fix was to compute the watermark from the actual latest file-modified time genuinely seen, using a sequential ForEach that checks every file's real timestamp. That closes the gap instead of papering over it. It also required routing around a separate platform restriction, since Set Variable activities can't self-reference, using Microsoft's own documented temp-variable pattern.
 
-This was verified across a real multi-run sequence: 10,080 rows, then 20,160, then 30,240, with each run only picking up its one new batch and already-processed files correctly ignored even though they sat in the same folder.
+This was verified across a multi-run sequence: 10,080 rows, then 20,160, then 30,240, with each run only picking up its one new batch and already-processed files correctly ignored even though they sat in the same folder.
 
 There's also an automatic, event-driven trigger, and it's confirmed working. A OneLake storage event trigger, backed by a Fabric Activator (Reflex) rule, fires `pl_fills_incremental` the moment a new file lands in `Files/raw/fact_fills_raw/`. There's no scheduled polling and no manual run. This was verified live: uploading a file with no manual pipeline interaction produced an automatic run visible in Monitoring hub.
 
@@ -122,7 +122,7 @@ Concurrency control was added after observing a real collision. Uploading two fi
 
 ## Error handling, logging, and notification: a reference pattern, not full coverage
 
-This was built once, on `pl_fills_incremental`, and deliberately not replicated across the other five entities in `pl_master_orchestrator`. That's a documented scope decision, not an oversight.
+This was built once, on `pl_fills_incremental`, and deliberately not replicated across the other five entities in `pl_master_orchestrator`.
 
 There's a `pipeline_run_log` table with one row per run: status, rows processed, error detail, and timestamp.
 
@@ -138,9 +138,9 @@ Notebooks return structured results using `mssparkutils.notebook.exit(json.dumps
 
 The fact relationship uses `dim_patient_current`, not just `dim_patient`. The full SCD2 history table can have multiple rows per patient once a plan change occurs, which would cause fan-out if it were related directly to the fact table. A filtered view showing only the current row per patient restores the one-row-per-patient uniqueness the relationship actually needs.
 
-Report pages and row-level security were not built. A verified, relationship-correct, Direct Lake semantic model is the right stopping point for a data engineering portfolio. Report and dashboard building is data analyst or BI developer territory. The closing proof moment in the demo video is a live query against `Gold_LH` rather than a report screenshot.
+Direct Lake semantic model is the right stopping point for purely a data engineering portfolio. Demo video is a live query against `Gold_LH`.
 
-A real, three-layer bug got caught here. `plan_paid_amount` and four sibling currency columns were stored as plain text instead of numeric values, all the way from bronze through gold. That passed silently through every prior layer with no error, and only surfaced when the semantic model's `SUM()` measure tried to do real arithmetic on it. The fix was adding explicit type casts, which then required `overwriteSchema=true` on every downstream write in the chain, since Delta's `mergeSchema` only allows adding columns, not changing an existing column's type.
+A three-layer bug got caught here. `plan_paid_amount` and four sibling currency columns were stored as plain text instead of numeric values, all the way from bronze through gold. That passed silently through every prior layer with no error, and only surfaced when the semantic model's `SUM()` measure tried to do real arithmetic on it. The fix was adding explicit type casts, which then required `overwriteSchema=true` on every downstream write in the chain, since Delta's `mergeSchema` only allows adding columns, not changing an existing column's type.
 
 ---
 
@@ -164,25 +164,16 @@ There are 9 passing pytest tests against pure, I/O-free transformation functions
 
 Dynamic Data Masking was applied and verified on `pharmacy_opsdb.dbo.patients`. `first_name` and `last_name` are partially masked, `date_of_birth` is fully masked, and all three were confirmed via `sys.masked_columns` metadata. Live behavioral testing, querying as a genuinely non-privileged user, wasn't completed, since Fabric SQL database's Entra-only authentication model doesn't support lightweight SQL-auth test principals. The metadata verification is treated as sufficient, since it's the same source of truth Fabric itself uses to enforce masking.
 
-Governance sensitivity labels were attempted but turned out to be unavailable. This tenant has no Purview label taxonomy configured, which is a separate, admin-level gap. It's documented as attempted and blocked, not skipped.
-
-One limitation worth stating plainly: DDM only protects SQL query access. It doesn't protect Spark or notebook reads of the same underlying data, since masking is enforced at the query engine level, not in the stored bytes.
+DDM only protects SQL query access. It doesn't protect Spark or notebook reads of the same underlying data, since masking is enforced at the query engine level, not in the stored bytes.
 
 ---
 
 ## Known limitations
 
-Being upfront about these rather than glossing over them.
 
 The dataset is fully synthetic. There's no real patient data, and the NDC codes are fabricated, so the openFDA enrichment doesn't literally join on `ndc` or `generic_name` against the live API.
 
 The SQL source (`pharmacy_opsdb`) and the Eventstream producer are simulated for this demo.
-
-Git integration was never actually available on this account. This is an organizational restriction that was confirmed and documented rather than assumed, and it means CI/CD deployment pipelines couldn't be built. This repo was assembled manually instead of synced automatically from Fabric.
-
-Full Power BI report pages and row-level security weren't built. The verified semantic model stands in as proof this layer works.
-
-The sensitivity label taxonomy isn't configured in this tenant, so governance tagging was attempted but had nothing to apply.
 
 Error handling, logging, and notification are demonstrated on one pipeline, `pl_fills_incremental`, as a reference pattern. They aren't replicated across all six entities in the master orchestrator. That's a scope decision made explicitly, not an oversight.
 
@@ -190,11 +181,9 @@ Error handling, logging, and notification are demonstrated on one pipeline, `pl_
 
 ## Why it's built this way
 
-A few choices worth explaining rather than just listing.
 
 API pagination is handled in a notebook instead of chained pipeline activities, since that's more robust and easier to debug than accumulating state across pipeline variables with size limits.
 
-Shortcuts get a reachability check, not a copy. The entire point of a shortcut is that nothing needs to be copied, so the pipeline's only job is confirming it still resolves.
 
 Streaming stays outside the batch orchestrator, since bounded and unbounded sources don't share a trigger cleanly.
 
@@ -206,7 +195,7 @@ The logging setup uses two branches with independent dependency conditions inste
 
 ## Real bugs found and fixed
 
-There are 22 of them, each with the actual error text, root cause, and fix. This isn't a curated highlight reel. The full list is in [`docs/PROJECT_STATUS.md`](docs/PROJECT_STATUS.md). A few of the more interesting ones:
+The full list of errors is in [`docs/PROJECT_STATUS.md`](docs/PROJECT_STATUS.md). A few of the more interesting ones:
 
 Fabric's Switch and If activities can't nest inside another Switch or If. That's a documented platform restriction discovered mid-build, and it required a full redesign of the source-routing logic.
 
@@ -224,4 +213,4 @@ Microsoft Fabric, including Data Factory pipelines, Lakehouse and OneLake, Noteb
 
 ## Setup
 
-See [`docs/fabric-pharmacy-project-complete-guide.docx`](docs/fabric-pharmacy-project-complete-guide.docx) for the full step-by-step build, and [`docs/PROJECT_STATUS.md`](docs/PROJECT_STATUS.md) for the complete build history, every bug, and every scope decision made along the way.
+See [`docs/fabric-pharmacy-project-complete-guide.docx`](docs/fabric-pharmacy-project-complete-guide.docx) for the full step-by-step build, and [`docs/PROJECT_STATUS.md`](docs/PROJECT_STATUS.md) for the complete build history, bugs, and scope decisions made along the way.
