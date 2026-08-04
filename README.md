@@ -35,7 +35,7 @@ Sources (SQL, shortcut, API, file, stream)
                quarantined)
 ```
 
-There are two pipelines here, not one:
+There are two pipelines here:
 
 ```
 pl_master_orchestrator                          pl_fills_incremental
