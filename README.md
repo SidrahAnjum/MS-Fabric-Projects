@@ -104,7 +104,7 @@ The Switch activity routes on a combined key (`source_type` plus `load_type`) in
 
 ---
 
-## Incremental loading, with a self-corrected race condition
+## Incremental loading
 
 `fact_fills_raw` gets its own dedicated pipeline, `pl_fills_incremental`, for two reasons. Incremental loading needs logic that doesn't belong in the shared orchestrator, and a file-arrival trigger on this one pipeline shouldn't re-run the other five entities every time a fills file lands.
 
@@ -120,7 +120,7 @@ Concurrency control was added after observing a real collision. Uploading two fi
 
 ---
 
-## Error handling, logging, and notification: a reference pattern, not full coverage
+## Error handling, logging, and notification
 
 This was built once, on `pl_fills_incremental`, and deliberately not replicated across the other five entities in `pl_master_orchestrator`.
 
@@ -132,7 +132,7 @@ Notebooks return structured results using `mssparkutils.notebook.exit(json.dumps
 
 ---
 
-## Semantic model: built and verified, with report-building out of scope
+## Semantic model
 
 `Pharmacy_Analytics_SM` was built on `Gold_LH` in Direct Lake mode. It has 8 tables, 6 relationships forming a proper star schema, and 4 DAX measures, all verified working. A `Total Fills` breakdown sliced by `dim_drug[drug_class]` came back correct, non-blank, and correctly filtered, not just a measure returning some number.
 
@@ -144,7 +144,7 @@ A three-layer bug got caught here. `plan_paid_amount` and four sibling currency 
 
 ---
 
-## Dataflow Gen2: the one deliberately low-code piece
+## Dataflow Gen2
 
 Every other transformation in this project is code-first, using PySpark and dynamic pipelines. That was a deliberate choice to showcase data engineering skill over low-code tooling. `df_drug_reference_mart` is the one exception: a Dataflow Gen2 that blends `dim_drugs` with `drug_label_enrichment`, built specifically to demonstrate the judgment of knowing when to reach for a self-service tool instead of writing code.
 
@@ -193,7 +193,7 @@ The logging setup uses two branches with independent dependency conditions inste
 
 ---
 
-## Real bugs found and fixed
+## Bugs found and fixed
 
 The full list of errors is in [`docs/PROJECT_STATUS.md`](docs/PROJECT_STATUS.md). A few of the more interesting ones:
 
