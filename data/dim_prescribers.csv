@@ -1,0 +1,151 @@
+prescriber_id,npi,first_name,last_name,specialty,state
+PRESC00001,1866616964,Danielle,Johnson,Oncology,MA
+PRESC00002,1717112652,Joshua,Walker,Oncology,NY
+PRESC00003,1712308209,Jill,Rhodes,Family Medicine,CT
+PRESC00004,1283968123,Patricia,Miller,Family Medicine,NH
+PRESC00005,1797163846,Robert,Johnson,Oncology,CT
+PRESC00006,1292431670,Jeffery,Wagner,Psychiatry,CA
+PRESC00007,1226161867,Anthony,Gonzalez,Pain Management,RI
+PRESC00008,1738194420,Debra,Gardner,Psychiatry,VT
+PRESC00009,1524557080,Jeffrey,Lawrence,Psychiatry,MA
+PRESC00010,1099104722,Lisa,Smith,Pediatrics,NY
+PRESC00011,1047337803,Linda,Wolfe,Internal Medicine,NJ
+PRESC00012,1827982963,Matthew,Moore,Cardiology,TX
+PRESC00013,1281272327,Susan,Rogers,Cardiology,FL
+PRESC00014,1474417266,Christopher,Davis,Oncology,FL
+PRESC00015,1459225330,Melanie,Munoz,Oncology,MA
+PRESC00016,1120123666,Lindsay,Blair,Family Medicine,FL
+PRESC00017,1970585914,Amanda,Dudley,Cardiology,VT
+PRESC00018,1038684919,Nicholas,Arnold,Pain Management,CA
+PRESC00019,1593269304,Maria,Montgomery,Cardiology,PA
+PRESC00020,1136843584,Michelle,Ray,Internal Medicine,NY
+PRESC00021,1391541578,Janet,Williams,Internal Medicine,NJ
+PRESC00022,1225567963,Jeremy,Roberts,Endocrinology,TX
+PRESC00023,1110373808,Christopher,Hall,Pain Management,VT
+PRESC00024,1949332407,Craig,Ramirez,Pediatrics,CA
+PRESC00025,1804745462,Cynthia,Diaz,Cardiology,RI
+PRESC00026,1928363301,Mitchell,Clark,Cardiology,CT
+PRESC00027,1946413444,Joseph,Zuniga,Pediatrics,MA
+PRESC00028,1192587044,Deborah,Lynch,Pain Management,PA
+PRESC00029,1861393416,George,Daniel,Endocrinology,NY
+PRESC00030,1170937380,Frank,Gray,Family Medicine,PA
+PRESC00031,1936481956,Veronica,Bowman,Internal Medicine,ME
+PRESC00032,1238836384,Angela,Cohen,Endocrinology,ME
+PRESC00033,1375442872,Megan,Parsons,Psychiatry,RI
+PRESC00034,1239362341,Jeremy,Johnson,Internal Medicine,TX
+PRESC00035,1207371533,Leslie,Adams,Pediatrics,NJ
+PRESC00036,1299147754,Jason,Hahn,Family Medicine,NY
+PRESC00037,1377040284,Nancy,Edwards,Oncology,PA
+PRESC00038,1729627019,Diana,Foster,Oncology,NJ
+PRESC00039,1029635852,Robin,Ellis,Family Medicine,NY
+PRESC00040,1191735734,Joseph,Wright,Nurse Practitioner,NY
+PRESC00041,1041078352,Anna,Baker,Family Medicine,CA
+PRESC00042,1466609283,Brenda,Hurst,Pain Management,FL
+PRESC00043,1844420824,Reginald,Robinson,Pain Management,PA
+PRESC00044,1650911797,Whitney,Hicks,Oncology,NH
+PRESC00045,1413600440,Christopher,Williams,Nurse Practitioner,RI
+PRESC00046,1273506211,Daniel,Burton,Internal Medicine,FL
+PRESC00047,1468213197,Laura,Henderson,Internal Medicine,VT
+PRESC00048,1993828765,Bryan,James,Oncology,TX
+PRESC00049,1772482077,Wendy,Rice,Endocrinology,NJ
+PRESC00050,1463102056,Tasha,Valencia,Family Medicine,TX
+PRESC00051,1988670177,Alexander,Le,Pain Management,CA
+PRESC00052,1337064353,Erin,Herrera,Family Medicine,FL
+PRESC00053,1966417932,Joseph,Davidson,Psychiatry,VT
+PRESC00054,1332091877,Daniel,Graham,Pediatrics,NJ
+PRESC00055,1432074125,Shawn,Mckay,Psychiatry,VT
+PRESC00056,1136674237,Nancy,Baker,Endocrinology,PA
+PRESC00057,1713962536,Vincent,White,Pediatrics,TX
+PRESC00058,1803303363,Rita,Harrell,Cardiology,CA
+PRESC00059,1611072118,Kenneth,Fowler,Psychiatry,PA
+PRESC00060,1588343096,Chelsea,Hernandez,Internal Medicine,NY
+PRESC00061,1308071259,Kathryn,Ryan,Endocrinology,PA
+PRESC00062,1843702118,Kimberly,Moreno,Nurse Practitioner,CA
+PRESC00063,1702984810,Aaron,Nguyen,Pain Management,ME
+PRESC00064,1474364121,Andrew,Hickman,Orthopedics,TX
+PRESC00065,1229460134,Natasha,Decker,Oncology,ME
+PRESC00066,1852266893,Kyle,Brown,Cardiology,TX
+PRESC00067,1091048514,Natalie,Arroyo,Psychiatry,VT
+PRESC00068,1712807629,Christopher,Tucker,Nurse Practitioner,NJ
+PRESC00069,1100273738,Chad,Hodges,Endocrinology,TX
+PRESC00070,1333310361,Katie,Anderson,Endocrinology,RI
+PRESC00071,1158220114,Thomas,Pierce,Internal Medicine,MA
+PRESC00072,1262897676,Joseph,Brennan,Orthopedics,CA
+PRESC00073,1912398903,Rodney,Lewis,Family Medicine,ME
+PRESC00074,1445002643,Amber,Blair,Nurse Practitioner,RI
+PRESC00075,1771318048,James,Collins,Pediatrics,ME
+PRESC00076,1429123992,Wanda,Santos,Endocrinology,CT
+PRESC00077,1704436922,Samuel,Holmes,Internal Medicine,NH
+PRESC00078,1835822550,David,Walker,Pediatrics,RI
+PRESC00079,1188856883,Matthew,Chapman,Oncology,ME
+PRESC00080,1053921577,Jerry,Robinson,Oncology,RI
+PRESC00081,1985125921,Chad,Welch,Family Medicine,ME
+PRESC00082,1143171768,Jeremy,Whitehead,Orthopedics,TX
+PRESC00083,1570298515,Michele,Jones,Oncology,CA
+PRESC00084,1340696084,John,Caldwell,Orthopedics,CA
+PRESC00085,1875106572,Jason,Anderson,Oncology,PA
+PRESC00086,1891816852,Selena,Duncan,Oncology,ME
+PRESC00087,1963369870,Thomas,Mueller,Cardiology,FL
+PRESC00088,1925023116,Lindsey,Lee,Orthopedics,ME
+PRESC00089,1278304807,Collin,Jordan,Endocrinology,TX
+PRESC00090,1297760792,Rodney,Owens,Oncology,ME
+PRESC00091,1672966010,Jessica,Nunez,Endocrinology,NY
+PRESC00092,1472309605,Tracey,Garcia,Family Medicine,FL
+PRESC00093,1306798268,Richard,Morgan,Endocrinology,NY
+PRESC00094,1360613550,Michelle,Wright,Pain Management,VT
+PRESC00095,1086519602,James,West,Cardiology,CT
+PRESC00096,1248315126,Robert,Ramirez,Pediatrics,FL
+PRESC00097,1164073400,John,Leblanc,Endocrinology,NH
+PRESC00098,1445461013,Scott,Callahan,Pediatrics,NJ
+PRESC00099,1582624278,Andrea,Williams,Orthopedics,PA
+PRESC00100,1066857303,Yvette,Huff,Endocrinology,PA
+PRESC00101,1418197538,Tanya,House,Nurse Practitioner,FL
+PRESC00102,1020972273,Melinda,Martin,Nurse Practitioner,PA
+PRESC00103,1512153089,Todd,Lewis,Internal Medicine,NJ
+PRESC00104,1320632895,Richard,Brown,Pediatrics,PA
+PRESC00105,1577909930,Nicholas,Galloway,Oncology,CA
+PRESC00106,1964017593,Joseph,Bowers,Endocrinology,ME
+PRESC00107,1235602191,Spencer,Henderson,Psychiatry,PA
+PRESC00108,1521454127,Susan,Cowan,Internal Medicine,PA
+PRESC00109,1360916347,Angela,Higgins,Pediatrics,FL
+PRESC00110,1177215428,Eric,Phillips,Orthopedics,CT
+PRESC00111,1668143326,Tanya,Riley,Oncology,MA
+PRESC00112,1973807454,Amy,Adkins,Pediatrics,CA
+PRESC00113,1606011277,Brian,Silva,Internal Medicine,NH
+PRESC00114,1690147183,Wesley,Farrell,Pediatrics,CT
+PRESC00115,1930774552,Eric,Yu,Orthopedics,CT
+PRESC00116,1053992714,Christopher,Lopez,Psychiatry,PA
+PRESC00117,1351492250,Brooke,Leonard,Endocrinology,ME
+PRESC00118,1350948014,Joe,Wilson,Pain Management,PA
+PRESC00119,1298775766,Pamela,Sanchez,Pediatrics,NY
+PRESC00120,1896478772,Brooke,Harvey,Family Medicine,ME
+PRESC00121,1020812641,Robert,Silva,Oncology,MA
+PRESC00122,1375767056,Alexandra,Donovan,Endocrinology,TX
+PRESC00123,1073678414,James,Moran,Internal Medicine,MA
+PRESC00124,1265518424,John,Foster,Endocrinology,MA
+PRESC00125,1667154083,Emily,Evans,Cardiology,RI
+PRESC00126,1135528741,Leslie,Walton,Orthopedics,TX
+PRESC00127,1122824732,Charles,Ellis,Nurse Practitioner,RI
+PRESC00128,1499326438,Yolanda,Ferrell,Psychiatry,NJ
+PRESC00129,1180162221,Charles,Lewis,Nurse Practitioner,CA
+PRESC00130,1803079055,Joseph,Mahoney,Family Medicine,CT
+PRESC00131,1333975497,Nicole,Suarez,Family Medicine,CA
+PRESC00132,1027571992,Mike,Moore,Psychiatry,CA
+PRESC00133,1727296111,Martha,Warner,Pediatrics,PA
+PRESC00134,1767741192,Cheryl,Archer,Endocrinology,NH
+PRESC00135,1635760237,Destiny,Smith,Endocrinology,NH
+PRESC00136,1748605284,Lisa,Evans,Psychiatry,TX
+PRESC00137,1644687060,Elizabeth,Mcmillan,Family Medicine,CA
+PRESC00138,1840348305,Dennis,Wilson,Internal Medicine,NJ
+PRESC00139,1572030854,Daniel,Tran,Pediatrics,TX
+PRESC00140,1397897455,Joseph,Jacobs,Family Medicine,VT
+PRESC00141,1695294275,Jennifer,Harris,Pain Management,MA
+PRESC00142,1912224883,Cynthia,Baker,Pediatrics,ME
+PRESC00143,1113321496,Tracy,Whitehead,Pediatrics,NJ
+PRESC00144,1682454310,Meghan,Davis,Orthopedics,FL
+PRESC00145,1164272995,Rodney,Hill,Pediatrics,CT
+PRESC00146,1787906704,Adam,Wise,Oncology,TX
+PRESC00147,1289998761,Dana,Green,Nurse Practitioner,VT
+PRESC00148,1831764920,Joyce,Arnold,Orthopedics,ME
+PRESC00149,1467694547,Ronald,Smith,Nurse Practitioner,NY
+PRESC00150,1346071904,Charles,Ware,Endocrinology,NH

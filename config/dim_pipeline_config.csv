@@ -1,0 +1,9 @@
+entity_name,source_type,source_path_or_table,connection_name,file_format,sink_lakehouse,sink_table,load_type,watermark_column,primary_key,is_active,notebook_path
+dim_patients,sql,dbo.patients,conn_pharmacy_opsdb,sql,lh_bronze,dim_patients,scd2,,patient_id,true,Notebooks/nb_silver_patients_scd2
+dim_prescribers,sql,dbo.prescribers,conn_pharmacy_opsdb,sql,lh_bronze,dim_prescribers,full,,prescriber_id,true,Notebooks/nb_silver_prescribers
+dim_pharmacies,sql,dbo.pharmacies,conn_pharmacy_opsdb,sql,lh_bronze,dim_pharmacies,full,,pharmacy_id,true,Notebooks/nb_silver_pharmacies
+dim_plans,sql,dbo.plans,conn_pharmacy_opsdb,sql,lh_bronze,dim_plans,full,,plan_id,true,Notebooks/nb_silver_plans
+dim_drugs,shortcut,Shared_Reference_Data/Formulary_Reference_LH/Tables/dim_drugs,n/a - shortcut,delta,lh_bronze,dim_drugs,shortcut,,ndc,true,Notebooks/nb_silver_drugs
+drug_label_enrichment,api,https://api.fda.gov/drug/label.json,conn_openfda_api,json,lh_bronze,drug_label_enrichment,api_paginated,,ndc,true,Notebooks/nb_silver_drug_labels
+fact_fills_raw,file,raw/fact_fills_raw/,n/a - dedicated pipeline,csv,lh_bronze,fact_fills_raw,incremental,_ingested_at,fill_id,false,Notebooks/nb_silver_fills
+streaming_pos_events,eventstream,es_pos_adjudication,n/a - eventstream,json,lh_bronze,streaming_pos_events,streaming,event_timestamp,event_id,false,Notebooks/nb_silver_pos_events

@@ -1,0 +1,78 @@
+ndc,drug_name,generic_name,drug_class,strength,form,is_opioid,is_controlled_substance,dea_schedule,is_generic,awp_unit_price
+10001-7912-14,Lipitor,atorvastatin,Statin,10mg,tablet,False,False,,True,39.51
+10001-4811-74,Lipitor,atorvastatin,Statin,20mg,tablet,False,False,,False,38.61
+10001-4257-93,Lipitor,atorvastatin,Statin,40mg,tablet,False,False,,False,45.61
+10001-4611-67,Lipitor,atorvastatin,Statin,80mg,tablet,False,False,,False,42.01
+10002-1106-30,Crestor,rosuvastatin,Statin,5mg,tablet,False,False,,False,58.61
+10002-5552-29,Crestor,rosuvastatin,Statin,10mg,tablet,False,False,,True,68.23
+10002-6514-23,Crestor,rosuvastatin,Statin,20mg,tablet,False,False,,True,57.84
+10003-6881-54,Metformin,metformin HCl,Antidiabetic,500mg,tablet,False,False,,False,11.15
+10003-1711-68,Metformin,metformin HCl,Antidiabetic,850mg,tablet,False,False,,False,10.65
+10003-7201-20,Metformin,metformin HCl,Antidiabetic,1000mg,tablet,False,False,,False,11.26
+10004-6925-83,Jardiance,empagliflozin,Antidiabetic,10mg,tablet,False,False,,True,583.75
+10004-1750-94,Jardiance,empagliflozin,Antidiabetic,25mg,tablet,False,False,,True,595.06
+10005-2307-39,Ozempic,semaglutide,Antidiabetic/GLP-1,0.25mg,injection,False,False,,True,915.84
+10005-8428-91,Ozempic,semaglutide,Antidiabetic/GLP-1,0.5mg,injection,False,False,,True,853.86
+10005-6820-36,Ozempic,semaglutide,Antidiabetic/GLP-1,1mg,injection,False,False,,False,883.59
+10006-2169-87,Lisinopril,lisinopril,ACE Inhibitor,5mg,tablet,False,False,,False,9.01
+10006-5010-30,Lisinopril,lisinopril,ACE Inhibitor,10mg,tablet,False,False,,True,9.64
+10006-4598-97,Lisinopril,lisinopril,ACE Inhibitor,20mg,tablet,False,False,,True,11.03
+10006-1916-39,Lisinopril,lisinopril,ACE Inhibitor,40mg,tablet,False,False,,True,10.92
+10007-7572-44,Amlodipine,amlodipine besylate,Calcium Channel Blocker,2.5mg,tablet,False,False,,True,8.22
+10007-6155-37,Amlodipine,amlodipine besylate,Calcium Channel Blocker,5mg,tablet,False,False,,False,9.0
+10007-8517-28,Amlodipine,amlodipine besylate,Calcium Channel Blocker,10mg,tablet,False,False,,True,8.03
+10008-9830-43,Metoprolol,metoprolol tartrate,Beta Blocker,25mg,tablet,False,False,,False,8.2
+10008-7543-56,Metoprolol,metoprolol tartrate,Beta Blocker,50mg,tablet,False,False,,True,9.19
+10008-3266-75,Metoprolol,metoprolol tartrate,Beta Blocker,100mg,tablet,False,False,,True,7.02
+10009-1771-24,Levothyroxine,levothyroxine sodium,Thyroid,25mcg,tablet,False,False,,True,14.54
+10009-7916-86,Levothyroxine,levothyroxine sodium,Thyroid,50mcg,tablet,False,False,,True,13.52
+10009-8668-77,Levothyroxine,levothyroxine sodium,Thyroid,75mcg,tablet,False,False,,True,15.98
+10009-1188-97,Levothyroxine,levothyroxine sodium,Thyroid,100mcg,tablet,False,False,,False,12.38
+10010-9797-44,Amoxicillin,amoxicillin,Antibiotic,250mg,capsule,False,False,,False,17.14
+10010-5808-65,Amoxicillin,amoxicillin,Antibiotic,500mg,capsule,False,False,,True,17.75
+10011-5315-74,Azithromycin,azithromycin,Antibiotic,250mg,tablet,False,False,,True,22.05
+10011-2743-90,Azithromycin,azithromycin,Antibiotic,500mg,tablet,False,False,,True,24.26
+10012-9317-87,Ciprofloxacin,ciprofloxacin,Antibiotic,250mg,tablet,False,False,,True,22.4
+10012-3646-79,Ciprofloxacin,ciprofloxacin,Antibiotic,500mg,tablet,False,False,,False,28.14
+10013-6310-72,Albuterol,albuterol sulfate,Bronchodilator,90mcg,inhaler,False,False,,True,57.43
+10014-6947-49,Fluticasone,fluticasone propionate,Corticosteroid,44mcg,inhaler,False,False,,True,60.72
+10014-2290-20,Fluticasone,fluticasone propionate,Corticosteroid,110mcg,inhaler,False,False,,False,69.71
+10015-2133-78,Omeprazole,omeprazole,PPI,20mg,capsule,False,False,,True,14.22
+10015-8787-80,Omeprazole,omeprazole,PPI,40mg,capsule,False,False,,True,14.87
+10016-7932-37,Sertraline,sertraline HCl,SSRI,25mg,tablet,False,False,,False,21.53
+10016-4295-49,Sertraline,sertraline HCl,SSRI,50mg,tablet,False,False,,True,22.97
+10016-7118-66,Sertraline,sertraline HCl,SSRI,100mg,tablet,False,False,,False,19.71
+10017-5061-38,Escitalopram,escitalopram oxalate,SSRI,5mg,tablet,False,False,,True,22.83
+10017-4770-85,Escitalopram,escitalopram oxalate,SSRI,10mg,tablet,False,False,,True,20.45
+10017-1964-39,Escitalopram,escitalopram oxalate,SSRI,20mg,tablet,False,False,,True,26.92
+10018-6413-19,Alprazolam,alprazolam,Benzodiazepine,0.25mg,tablet,False,True,IV,False,27.64
+10018-8953-37,Alprazolam,alprazolam,Benzodiazepine,0.5mg,tablet,False,True,IV,False,26.69
+10018-8744-41,Alprazolam,alprazolam,Benzodiazepine,1mg,tablet,False,True,IV,True,32.77
+10019-4119-22,Lorazepam,lorazepam,Benzodiazepine,0.5mg,tablet,False,True,IV,True,29.34
+10019-6804-64,Lorazepam,lorazepam,Benzodiazepine,1mg,tablet,False,True,IV,True,27.72
+10019-1887-96,Lorazepam,lorazepam,Benzodiazepine,2mg,tablet,False,True,IV,False,32.07
+10020-2612-17,Oxycodone,oxycodone HCl,Opioid,5mg,tablet,True,True,II,True,42.74
+10020-2790-41,Oxycodone,oxycodone HCl,Opioid,10mg,tablet,True,True,II,True,36.28
+10020-8350-27,Oxycodone,oxycodone HCl,Opioid,15mg,tablet,True,True,II,True,36.2
+10020-8579-41,Oxycodone,oxycodone HCl,Opioid,20mg,tablet,True,True,II,True,39.32
+10021-2604-16,Hydrocodone/APAP,hydrocodone/acetaminophen,Opioid,5/325mg,tablet,True,True,II,False,40.24
+10021-1241-21,Hydrocodone/APAP,hydrocodone/acetaminophen,Opioid,10/325mg,tablet,True,True,II,True,31.5
+10022-8956-71,Tramadol,tramadol HCl,Opioid,50mg,tablet,True,True,IV,True,22.19
+10022-1960-31,Tramadol,tramadol HCl,Opioid,100mg,tablet,True,True,IV,True,17.01
+10023-7396-43,Fentanyl Patch,fentanyl transdermal,Opioid,25mcg/hr,patch,True,True,II,True,196.47
+10023-8973-29,Fentanyl Patch,fentanyl transdermal,Opioid,50mcg/hr,patch,True,True,II,True,197.19
+10024-1958-84,Gabapentin,gabapentin,Anticonvulsant,100mg,capsule,False,False,,False,15.19
+10024-6138-17,Gabapentin,gabapentin,Anticonvulsant,300mg,capsule,False,False,,True,15.38
+10024-9238-77,Gabapentin,gabapentin,Anticonvulsant,600mg,capsule,False,False,,True,13.01
+10025-9320-20,Warfarin,warfarin sodium,Anticoagulant,2mg,tablet,False,False,,True,10.45
+10025-2113-96,Warfarin,warfarin sodium,Anticoagulant,5mg,tablet,False,False,,True,11.65
+10026-5033-84,Eliquis,apixaban,Anticoagulant,2.5mg,tablet,False,False,,False,482.68
+10026-2343-63,Eliquis,apixaban,Anticoagulant,5mg,tablet,False,False,,False,574.06
+10027-9565-50,Humira,adalimumab,Biologic/Immunomodulator,40mg,injection,False,False,,True,6196.69
+10028-6147-40,Insulin Glargine,insulin glargine,Antidiabetic/Insulin,100units/mL,injection,False,False,,True,339.06
+10029-5915-68,Prednisone,prednisone,Corticosteroid,5mg,tablet,False,False,,True,10.16
+10029-2188-11,Prednisone,prednisone,Corticosteroid,10mg,tablet,False,False,,True,9.33
+10029-2638-19,Prednisone,prednisone,Corticosteroid,20mg,tablet,False,False,,False,8.23
+10030-5345-26,Ibuprofen,ibuprofen,NSAID,200mg,tablet,False,False,,True,7.8
+10030-5002-57,Ibuprofen,ibuprofen,NSAID,400mg,tablet,False,False,,True,6.28
+10030-9900-48,Ibuprofen,ibuprofen,NSAID,600mg,tablet,False,False,,False,8.02

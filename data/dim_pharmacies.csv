@@ -1,0 +1,46 @@
+pharmacy_id,pharmacy_name,npi,channel,state,city
+PHARM0001,Walmart Pharmacy #7485,1261846370,retail,ME,New Barry
+PHARM0002,Independent Pharmacy #5611,1030816384,retail,ME,Brandiberg
+PHARM0003,Kroger Pharmacy #3079,1523502759,retail,RI,Andersonport
+PHARM0004,Kroger Pharmacy #4332,1365436049,retail,NY,Rachelton
+PHARM0005,Walmart Pharmacy #9206,1010899674,retail,VT,Jasonbury
+PHARM0006,Costco Pharmacy #1502,1259154084,retail,FL,West Kimberlychester
+PHARM0007,Independent Pharmacy #8104,1596115913,retail,RI,East Michelle
+PHARM0008,MailRx Home Delivery,1693532952,mail,FL,South Angel
+PHARM0009,MailRx Home Delivery,1481223755,mail,MA,Kimberlychester
+PHARM0010,Walgreens #4920,1237937327,retail,PA,West Erik
+PHARM0011,Costco Pharmacy #5116,1712921644,retail,CA,South Monicafort
+PHARM0012,Kroger Pharmacy #7853,1594287057,retail,VT,East Lisa
+PHARM0013,Kroger Pharmacy #7071,1800942073,retail,VT,Baileybury
+PHARM0014,Kroger Pharmacy #5864,1754684750,retail,ME,North Donna
+PHARM0015,Walmart Pharmacy #5123,1269942642,retail,RI,Murphyland
+PHARM0016,Walgreens #3255,1338817025,retail,NH,Michaelhaven
+PHARM0017,SpecialtyCare Rx,1818394863,specialty,FL,Frazierside
+PHARM0018,Rite Aid #3238,1232341238,retail,FL,Sheilaville
+PHARM0019,MailRx Home Delivery,1296889215,mail,FL,Gregoryview
+PHARM0020,SpecialtyCare Rx,1640799178,specialty,NY,North Candacestad
+PHARM0021,Walgreens #3280,1318092217,retail,RI,Samuelhaven
+PHARM0022,Kroger Pharmacy #3039,1324557359,retail,MA,South Rachelborough
+PHARM0023,SpecialtyCare Rx,1135917419,specialty,NY,Bradleychester
+PHARM0024,CVS Pharmacy #993,1594164665,retail,NY,New Saraside
+PHARM0025,Rite Aid #8142,1110152642,retail,MA,West Ryan
+PHARM0026,Walmart Pharmacy #7790,1514015466,retail,ME,Cindyville
+PHARM0027,Kroger Pharmacy #3120,1055165334,retail,NY,Williamchester
+PHARM0028,MailRx Home Delivery,1122500131,mail,NH,Richardport
+PHARM0029,Independent Pharmacy #8156,1079545125,retail,CA,East Robert
+PHARM0030,CVS Pharmacy #2585,1160199682,retail,CA,Byrdburgh
+PHARM0031,Walmart Pharmacy #1495,1266493008,retail,NH,Richardtown
+PHARM0032,SpecialtyCare Rx,1820814900,specialty,PA,Justinchester
+PHARM0033,Costco Pharmacy #8661,1408427798,retail,ME,Stevenmouth
+PHARM0034,MailRx Home Delivery,1319280490,mail,CA,New Thomas
+PHARM0035,Independent Pharmacy #5103,1610561240,retail,CA,Lake Christopher
+PHARM0036,CVS Pharmacy #1725,1818982730,retail,RI,Clarencebury
+PHARM0037,Costco Pharmacy #4435,1709129316,retail,NH,Jeffreyborough
+PHARM0038,Rite Aid #4029,1186630878,retail,VT,North Brandon
+PHARM0039,Walgreens #2664,1002873038,retail,PA,Carrland
+PHARM0040,MailRx Home Delivery,1740206617,mail,CA,Perryshire
+PHARM0041,MailRx Home Delivery,1312737284,mail,MA,Lake Heather
+PHARM0042,Costco Pharmacy #4820,1759088046,retail,NY,Rossberg
+PHARM0043,MailRx Home Delivery,1076428684,mail,TX,Port Michelleville
+PHARM0044,Costco Pharmacy #4434,1845923902,retail,TX,Robinsonhaven
+PHARM0045,Costco Pharmacy #7065,1123240112,retail,VT,Williamsbury

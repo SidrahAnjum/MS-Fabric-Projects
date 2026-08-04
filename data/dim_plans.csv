@@ -1,0 +1,9 @@
+plan_id,plan_name,payer,plan_type,formulary_tier_count
+PLAN001,Aetna Standard Plan,Aetna,Medicaid,3
+PLAN002,UnitedHealthcare Standard Plan,UnitedHealthcare,Commercial,5
+PLAN003,Cigna Standard Plan,Cigna,Medicare,3
+PLAN004,BlueCross BlueShield Standard Plan,BlueCross BlueShield,Commercial,3
+PLAN005,Humana Standard Plan,Humana,Medicaid,3
+PLAN006,Anthem Standard Plan,Anthem,Medicaid,5
+PLAN007,Medicaid State Plan Standard Plan,Medicaid State Plan,Medicaid,5
+PLAN008,Medicare Part D Advantage Plan,Medicare Part D,Medicare,3
