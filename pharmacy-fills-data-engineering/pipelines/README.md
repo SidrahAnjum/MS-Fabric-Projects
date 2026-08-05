@@ -10,8 +10,9 @@ expression used are documented in:
 - Video Links :
 
 
-**[Trigger based Incremental Data Load Pipeline Demo Link](https://youtu.be/9DxK1DuMKKI)**
+**[Incremental Load with File Arrival Trigger Pipeline Walkthrough](https://youtu.be/hjdiY31LKwA)**
 
+**[Trigger based Incremental Data Load Pipeline Demo Link](https://youtu.be/9DxK1DuMKKI)**
   
 **[Master Orchestrator Pipeline Walkthrough Link](https://youtu.be/wLS2JwIwuE4)**
 
