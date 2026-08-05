@@ -10,7 +10,7 @@ expression used are documented in:
 - Video Links :
 
 
-**[Incremental Load with File Arrival Trigger Pipeline Walkthrough](https://youtu.be/hjdiY31LKwA)**
+**[Incremental Load with File Arrival Trigger Pipeline Walkthrough Link](https://youtu.be/hjdiY31LKwA)**
 
 **[Trigger based Incremental Data Load Pipeline Demo Link](https://youtu.be/9DxK1DuMKKI)**
   
