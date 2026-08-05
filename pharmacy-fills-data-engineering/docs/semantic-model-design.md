@@ -1,4 +1,4 @@
-# Semantic model design: Pharmacy_Analytics_SM
+# Semantic model design: Pharmacy_Analytics_Semantic_Model
 
 This document captures the semantic model's design as written documentation, since a Fabric semantic model isn't something you can simply download the way you can a notebook or a CSV. It preserves the design even if live access to the Fabric workspace is ever lost.
 
@@ -52,7 +52,7 @@ DIVIDE(
 
 `Total Fills` was sliced by `dim_drug[drug_class]` and checked against expected results. The breakdown came back correct and non-blank across every class (for example, Antibiotic at 2,330 and Benzodiazepine at 2,340), summing to roughly 29,896. That's consistent with the 30,240 raw rows minus whatever got quarantined or had no matching drug. This confirmed the `dim_drug` relationship is genuinely filtering the data, not just sitting there decoratively.
 
-## A real bug found and fixed during this build
+## A bug found and fixed during this build
 
 `plan_paid_amount`, along with four sibling currency columns (`ingredient_cost`, `dispensing_fee`, `copay_amount`, `total_paid_amount`), were stored as plain text rather than numeric values all the way from bronze through gold. The `Total Plan Paid` measure's `SUM()` failed with "The function SUM cannot work with values of type String." This had passed silently through bronze, silver, and gold without ever throwing an error. It only surfaced once the semantic model actually tried to do arithmetic on the column.
 

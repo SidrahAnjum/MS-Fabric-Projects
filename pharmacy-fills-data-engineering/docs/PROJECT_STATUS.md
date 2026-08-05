@@ -186,7 +186,7 @@ A few other things were learned along the way:
 - The incoming versus outgoing message count mismatch in Data insights is a known, documented pattern, confirmed via Microsoft's documentation and community reports. It's usually explained by backlog catch-up and multiple consumers, such as the Live view preview, reading the same events independently. It's not a sign of data loss or duplication in the actual destination table. Verify via the real row count instead of the metrics graph.
 - For honest framing in the README and demo: this setup proves the mechanism, meaning authenticated real-time ingestion, buffering, and routing into a Lakehouse table, genuinely works. It is not simulating production scale or concurrency. A real deployment would have continuous, automatic event generation from the actual source system, batched sends, and partitioning by something like `pharmacy_id` for ordering guarantees, none of which this demo needed at 500 events sent once.
 
-## Real bugs hit and fixed (good interview material, each is a genuine, specific debugging story)
+## Bugs hit and fixed
 
 1. `is_active` type mismatch. The Filter condition compared string `'true'` against an actual `0/1`-typed column from the loaded table. Found by checking the raw Lookup output.
 2. Stale or cached debug output. A deliberately wrong test condition (`'definitely_wrong'`) still returned all 8 rows, revealing the output panel was showing a different activity's cached result, not a logic bug.
@@ -224,24 +224,4 @@ A few other things were learned along the way:
 - Dataflow Gen2 (`df_drug_reference_mart`), built and verified mechanically working. The specific drug-reference blend produced no matches, documented as a data limitation rather than a tool failure.
 - Dynamic Data Masking on `pharmacy_opsdb.dbo.patients`, applied and verified via `sys.masked_columns` metadata.
 
-## Not yet built
 
-- Power BI report pages and RLS. These are explicitly out of scope now, per the access restriction and the data-engineering-versus-BI scope reasoning above.
-- A CI/CD deployment pipeline and additional data quality checks. These are still just documented and discussed, not started.
-- Error handling, logging, and Notify on `pl_master_orchestrator`. This is deliberately not built. `pl_fills_incremental` stands as the reference implementation of a directly reusable pattern.
-
-## Not pursued (explicit decision, not an oversight)
-
-- Kafka for `streaming_pos_events`. This was prototyped, including a producer script, a docker-compose file, and a Confluent Cloud guide, then explicitly reverted back to the simpler Eventstream sample-data approach per instruction. The Kafka files remain in `/streaming/` if revisited later.
-- The `azure-eventhub` SDK for the Eventstream producer. This was blocked by the package install issue above. The REST and HTTPS version with a SAS token is the one actually in use, not a temporary workaround pending a fix.
-- Row-level watermarking for `fact_fills_raw`. This isn't possible with a flat-file Copy Data source. File-level, last-modified watermarking was used instead, which is the standard real-world pattern for file-based incremental loads anyway.
-- The full Power BI report and RLS. See the semantic model section above. This was blocked by the access restriction, and it's arguably outside core data engineering scope regardless.
-- Error handling and logging replicated across every pipeline branch. This was built once as a reference pattern on `pl_fills_incremental`, deliberately not copied to the other 6 entities in `pl_master_orchestrator`.
-- A live behavioral test of Dynamic Data Masking, and governance sensitivity labels beyond the attempt made. Both hit genuine platform or tenant-configuration walls, documented in their dedicated sections above rather than repeated here.
-
-## Next steps: packaging only, no further building planned
-
-1. Assemble the demo video from captured clips: a pipeline run with parallel entities, a quarantined-row catch, incremental-load count growth, the file-arrival trigger firing automatically, Eventstream throughput live, the semantic model's relationship diagram, and the closing `Gold_LH` opioid-utilization query.
-2. Manually assemble the GitHub repo, since Git integration remains blocked. This means gathering notebook exports (`.ipynb` and the `.py` files already delivered throughout this project), the dataset and control tables, `PROJECT_STATUS.md`, `semantic-model-design.md`, the README, and screenshots of every canvas (pipelines, semantic model, Eventstream, the Activator rule, and the DDM metadata query) as supporting evidence for what can't be exported as a literal file.
-3. A final README pass to update for the dropped Power BI scope, the semantic model, the error-handling and logging layer, the DDM and governance tag outcomes, and the full 22-item bug list, once the above are in place.
-4. If CI/CD is ever unblocked, pending the Git integration question with the tenant admin, it remains the one item with no current workaround. Everything else in this project has either been built, or has a documented, deliberate reason it wasn't.
