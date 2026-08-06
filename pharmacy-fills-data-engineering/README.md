@@ -1,6 +1,6 @@
 # Pharmacy fills analytics platform
 
-A metadata-driven, multi-source Fabric data engineering project. Six entities get ingested through five genuinely different mechanisms: SQL, a OneLake shortcut, a paginated REST API, incremental file loads with a self-healed race condition, and real-time streaming. All of it routes through one dynamic pipeline that's driven entirely by a control table. The project also includes SCD Type 2 historization, a verified Direct Lake semantic model, and documented bugs found and fixed along the way.
+A metadata-driven, multi-source Fabric data engineering project. Six entities get ingested through five different mechanisms: SQL, a OneLake shortcut, a paginated REST API, incremental file loads with a self-healed race condition, and real-time streaming. All of it routes through one dynamic pipeline that's driven entirely by a control table. The project also includes SCD Type 2 historization, a verified Direct Lake semantic model, and documented bugs found and fixed along the way.
 
 This isn't a tutorial replica.
 
