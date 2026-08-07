@@ -8,7 +8,7 @@ This isn't a tutorial replica.
 
 ## What this is
 
-A synthetic pharmacy claims dataset (patients, prescribers, pharmacies, plans, drugs, and about 90,000 claim fills) runs through a single, config-driven Fabric pipeline. Adding a new entity just means adding one row to a control table. Nobody has to touch the pipeline canvas.
+A synthetic pharmacy claims dataset (patients, prescribers, pharmacies, plans, drugs, and about 90,000 claim fills) runs through a config-driven Fabric pipeline. Adding a new entity just means adding one row to a control table. Nobody has to touch the pipeline canvas.
 
 The master pipeline handles five different ingestion mechanics in one canvas, plus a dedicated incremental-loading pipeline with a self-corrected concurrency bug, an event-driven trigger, real-time streaming, and a verified semantic model. Each of these has a defensible engineering decision behind it.
 
@@ -100,7 +100,7 @@ README.md
 
 One control table (`dim_pipeline_config.csv`) drives every decision: source type, load type, sink table, and which silver notebook to call. Nothing in the pipeline canvas is hardcoded per entity.
 
-The Switch activity routes on a combined key (`source_type` plus `load_type`) instead of a single field, because Fabric enforces a real platform restriction: Switch and If Condition activities cannot be nested inside another Switch or If. The original design called for a nested Switch to route `dim_patients` (SCD2) differently from the other SQL dimensions (full overwrite). That turned out to be structurally impossible. The fix was flattening the logic into four combined-key cases (`sql_full`, `sql_scd2`, `shortcut_shortcut`, `api_api_paginated`) instead. It's documented as bug 10 below, and it's a good example of a design that had to change because of a platform constraint discovered mid-build, not a planning mistake.
+The Switch activity routes on a combined key (`source_type` plus `load_type`) instead of a single field, because Fabric enforces a platform restriction: Switch and If Condition activities cannot be nested inside another Switch or If. The original design called for a nested Switch to route `dim_patients` (SCD2) differently from the other SQL dimensions (full overwrite). That turned out to be structurally impossible. The fix was flattening the logic into four combined-key cases (`sql_full`, `sql_scd2`, `shortcut_shortcut`, `api_api_paginated`) instead. I
 
 ---
 
@@ -110,13 +110,13 @@ The Switch activity routes on a combined key (`source_type` plus `load_type`) in
 
 The watermarking here works at the file level, not the row level. Copy Data can't filter rows inside a CSV by a column value. That only works against queryable sources like the SQL database. Instead, the pipeline tracks file upload time and uses Copy Data's native "Filter by last modified" setting.
 
-There's a bug worth mentioning here, one that was found and fixed rather than just built once and left alone. The first version set the watermark to `current_timestamp()` after each run. That's simple, but it has a genuine gap. If a new file landed during a run, after the Copy step already read the folder but before the watermark updated, that file's timestamp would end up older than the new watermark and get silently skipped, forever. The fix was to compute the watermark from the actual latest file-modified time genuinely seen, using a sequential ForEach that checks every file's real timestamp. That closes the gap instead of papering over it. It also required routing around a separate platform restriction, since Set Variable activities can't self-reference, using Microsoft's own documented temp-variable pattern.
+There's a bug worth mentioning here: a previous first version set the watermark to `current_timestamp()` after each run. That's simple, but it has a gap. If a new file landed during a run, after the Copy step already read the folder but before the watermark updated, that file's timestamp would end up older than the new watermark and get silently skipped, forever. The fix was to compute the watermark from the actual latest file-modified time genuinely seen, using a sequential ForEach that checks every file's real timestamp. 
 
 This was verified across a multi-run sequence: 10,080 rows, then 20,160, then 30,240, with each run only picking up its one new batch and already-processed files correctly ignored even though they sat in the same folder.
 
 There's also an automatic, event-driven trigger, and it's confirmed working. A OneLake storage event trigger, backed by a Fabric Activator (Reflex) rule, fires `pl_fills_incremental` the moment a new file lands in `Files/raw/fact_fills_raw/`. There's no scheduled polling and no manual run. This was verified live: uploading a file with no manual pipeline interaction produced an automatic run visible in Monitoring hub.
 
-Concurrency control was added after observing a real collision. Uploading two files close together produced two genuinely overlapping pipeline runs, a real race condition, not a theoretical one, confirmed by watching Monitoring hub show overlapping start and end times. The fix was setting the pipeline's concurrency to 1, which queues subsequent trigger-fired runs instead of running them in parallel.
+Concurrency control was added after observing a real collision. Uploading two files close together produced two overlapping pipeline runs, confirmed by watching Monitoring hub show overlapping start and end times. The fix was setting the pipeline's concurrency to 1, which queues subsequent trigger-fired runs instead of running them in parallel.
 
 ---
 
@@ -134,13 +134,13 @@ Notebooks return structured results using `mssparkutils.notebook.exit(json.dumps
 
 ## Semantic model
 
-`Pharmacy_Analytics_SM` was built on `Gold_LH` in Direct Lake mode. It has 8 tables, 6 relationships forming a proper star schema, and 4 DAX measures, all verified working. A `Total Fills` breakdown sliced by `dim_drug[drug_class]` came back correct, non-blank, and correctly filtered, not just a measure returning some number.
+`Pharmacy_Analytics_Semantic_Model` was built on `Gold_LH` in Direct Lake mode. It has 8 tables, 6 relationships forming a proper star schema, and 4 DAX measures, all verified working. A `Total Fills` breakdown sliced by `dim_drug[drug_class]` came back correct, non-blank, and correctly filtered.
 
 The fact relationship uses `dim_patient_current`, not just `dim_patient`. The full SCD2 history table can have multiple rows per patient once a plan change occurs, which would cause fan-out if it were related directly to the fact table. A filtered view showing only the current row per patient restores the one-row-per-patient uniqueness the relationship actually needs.
 
 Direct Lake semantic model is the right stopping point for purely a data engineering portfolio. Demo video is a live query against `Gold_LH`.
 
-A three-layer bug got caught here. `plan_paid_amount` and four sibling currency columns were stored as plain text instead of numeric values, all the way from bronze through gold. That passed silently through every prior layer with no error, and only surfaced when the semantic model's `SUM()` measure tried to do real arithmetic on it. The fix was adding explicit type casts, which then required `overwriteSchema=true` on every downstream write in the chain, since Delta's `mergeSchema` only allows adding columns, not changing an existing column's type.
+A three-layer bug got caught here. `plan_paid_amount` and four sibling currency columns were stored as plain text instead of numeric values, all the way from bronze through gold. That passed silently through every prior layer with no error, and only surfaced when the semantic model's `SUM()` measure tried to do arithmetic operation on it. The fix was adding explicit type casts, which then required `overwriteSchema=true` on every downstream write in the chain, since Delta's `mergeSchema` only allows adding columns, not changing an existing column's type.
 
 ---
 
@@ -148,16 +148,13 @@ A three-layer bug got caught here. `plan_paid_amount` and four sibling currency 
 
 Every other transformation in this project is code-first, using PySpark and dynamic pipelines. That was a deliberate choice to showcase data engineering skill over low-code tooling. `df_drug_reference_mart` is the one exception: a Dataflow Gen2 that blends `dim_drugs` with `drug_label_enrichment`, built specifically to demonstrate the judgment of knowing when to reach for a self-service tool instead of writing code.
 
-The honest result: the blend produced no matches, either on the intended `ndc` join, since synthetic NDC codes never correspond to real openFDA codes, or on a normalized `generic_name` join attempted as a fallback. The mechanism itself, merge queries, transformation steps, and a Lakehouse destination, is fully demonstrated and correctly built. The match rate is a data characteristic, not a tool failure.
+The honest result: the blend produced no matches, either on the intended `ndc` join, since synthetic NDC codes never correspond to real openFDA codes, or on a normalized `generic_name` join attempted as a fallback. The mechanism itself, merge queries, transformation steps, and a Lakehouse destination, is fully demonstrated and correctly built.
 
 ---
 
 ## Data quality and testing
 
 `fact_fills_raw` is deliberately messy. It has four inconsistent date formats, mixed-case drug names, about 0.8 percent duplicate claims, some nulls, 15 orphan `prescriber_id` values, and occasional negative `days_supply` typos. Bad rows aren't dropped silently. They get routed to a `fact_fills_quarantine` table, with counts reported on every run.
-
-There are 9 passing pytest tests against pure, I/O-free transformation functions in `silver_transformations.py` and `scd2_helpers.py`, run with a local Spark session and no live Fabric workspace required. A real bug was caught this way: the original date-parsing logic used `to_timestamp()`, which throws under Spark's ANSI mode, Fabric's runtime default, on a malformed date instead of returning null. That's exactly the kind of bad data this pipeline exists to handle. It was fixed with `try_to_timestamp()`.
-
 ---
 
 ## Security
